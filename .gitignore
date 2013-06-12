@@ -1,0 +1,6 @@
+.idea
+node_modules
+public/bower_components
+public/main.min.*
+main.min.map
+main.min.js

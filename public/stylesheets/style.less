@@ -1,0 +1,179 @@
+@import "../bower_components/bootstrap/less/bootstrap";
+
+@fieldCellSize: 40px;
+
+
+.field {
+  .cell {
+    .square(@fieldCellSize);
+
+    border: 1px dashed gray;
+
+    &:hover {
+      background-color: lighten(@blue, 50%);
+    }
+
+    &.ship-part {
+      background-color: @orange;
+      border: 1px dashed @blue;
+
+      &:hover {
+        background-color: lighten(@orange, 30%);
+      }
+
+      &.ship-start.ship-top {
+        .border-top-radius(15px);
+      }
+
+      &.ship-end.ship-top {
+        .border-bottom-radius(5px);
+      }
+
+      &.ship-start.ship-bottom {
+        .border-top-radius(5px);
+      }
+
+      &.ship-end.ship-bottom {
+        .border-bottom-radius(15px);
+      }
+
+      &.ship-start.ship-left {
+        .border-left-radius(15px);
+      }
+
+      &.ship-end.ship-left {
+        .border-right-radius(5px);
+      }
+
+      &.ship-start.ship-right {
+        .border-left-radius(5px);
+      }
+
+      &.ship-end.ship-right {
+        .border-right-radius(15px);
+      }
+    }
+
+    &.shot {
+      .shot-marker {
+        background-color: @yellow;
+      }
+
+      &.ship-part {
+
+        .shot-marker {
+          background-color: @red;
+        }
+      }
+
+      &.last {
+        .shot-marker {
+          .box-shadow(0 0 5px 5px lighten(@red, 30%));
+        }
+      }
+    }
+
+    &.highlight {
+      background-color: lighten(@orange, 20%);
+
+      &:hover {
+        background-color: none;
+      }
+
+      &.start.top {
+        .border-top-radius(15px);
+      }
+
+      &.end.top {
+        .border-bottom-radius(5px);
+      }
+
+      &.start.bottom {
+        .border-top-radius(5px);
+      }
+
+      &.end.bottom {
+        .border-bottom-radius(15px);
+      }
+
+      &.start.left {
+        .border-left-radius(15px);
+      }
+
+      &.end.left {
+        .border-right-radius(5px);
+      }
+
+      &.start.right {
+        .border-left-radius(5px);
+      }
+
+      &.end.right {
+        .border-right-radius(15px);
+      }
+    }
+
+    &.highlight.error {
+      background-color: lighten(@red, 20%);
+    }
+  }
+
+  .marker-left {
+    padding-right: 5px;
+  }
+
+  .marker-top {
+    padding-bottom: 5px;
+  }
+}
+
+.cell {
+  .shot-marker {
+    .square(14px);
+
+    .border-radius(14px);
+
+    border: 1px dashed gray;
+    margin: 0 0 0 11px;
+  }
+}
+
+.ship {
+  background-color: @orange;
+
+  .border-bottom-radius(5px);
+  .border-top-radius(15px);
+
+  width: @fieldCellSize;
+
+  &[data-length='1'] {
+    height: @fieldCellSize;
+  }
+
+  &[data-length='2'] {
+    height: 2 * @fieldCellSize;
+  }
+
+  &[data-length='3'] {
+    height: 3 * @fieldCellSize;
+  }
+
+  &[data-length='4'] {
+    height: 4 * @fieldCellSize;
+  }
+}
+
+.ships {
+  .ship {
+    display: inline-block;
+    margin: 5px;
+
+    &.selected {
+      .box-shadow(0 0 5px 5px lighten(@red, 30%));
+    }
+  }
+}
+
+.game-status {
+  margin-top: 20px;
+}

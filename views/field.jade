@@ -1,0 +1,17 @@
+letters = ' АБВГДЕЖЗИКЛМНОПРСТ'.split('')
+size = 10
+table
+    - for(var i = 0; i < size + 1; i++) {
+        tr
+            - for(var j = 0; j < size + 1; j++) {
+                if i === 0 && j === 0
+                    td
+                else if i === 0 && j !== 0
+                    td.text-center.marker-top= j
+                else if i !== 0 && j === 0
+                    td.text-center.marker-left= letters[i]
+                else
+                    td.cell(data-row=i-1, data-col=j-1)
+                        .shot
+            - }
+    - }

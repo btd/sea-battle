@@ -1,0 +1,19 @@
+<table>
+    <% for(var i = 0; i < size + 1; i++) { %>
+        <tr>
+            <% for(var j = 0; j < size + 1; j++) { %>
+                <% if (i === 0 && j === 0) { %>
+                    <td></td>
+                <% } else if(i === 0 && j !== 0) { %>
+                    <td class='text-center marker-top'><%= j %></td>
+                <% } else if(i !== 0 && j === 0) { %>
+                    <td class='text-center marker-left'><%= letters[i - 1] %></td>
+                <% } else { %>
+                    <td class='cell' data-row='<%= i - 1 %>' data-col='<%= j - 1 %>'>
+                        <div class='shot-marker'></div>
+                    </td>
+                <% } %>
+            <% } %>
+        </tr>
+    <% } %>
+</table>
