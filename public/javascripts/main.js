@@ -76,7 +76,9 @@ fieldViews[1].on('shot:out', function() {
     fieldViews[0].prepareToBattle();
     var res = otherPlayer.makeShot(fields[0]);
     if(res) {
-        if(!_.isBoolean(res)) tryFinishGame(fields[0], statusText.otherPlayerWin);
+        if(!_.isBoolean(res) && tryFinishGame(fields[0], statusText.otherPlayerWin)) {
+            return;
+        }
 
         waitForNextShot = setInterval(function() {
             res = otherPlayer.makeShot(fields[0]);
@@ -89,7 +91,8 @@ fieldViews[1].on('shot:out', function() {
                 gameStatus.setStatus(statusText.waitCurrentPlayerShot);
 
                 fieldViews[1].prepareToBattle();
-            } else if(!_.isBoolean(res)) tryFinishGame(fields[0], statusText.otherPlayerWin);
+            } else if(!_.isBoolean(res) &&
+                 tryFinishGame(fields[0], statusText.otherPlayerWin)) clearInterval(waitForNextShot);
         }, 1000);
 
 
@@ -113,6 +116,7 @@ var tryFinishGame = function(f, status) {
         fieldViews[1].waitTurn();
 
         gameStatus.setStatus(status);
+        return true;
     }
 }
 

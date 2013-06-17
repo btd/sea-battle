@@ -16,6 +16,10 @@ module.exports = Field = Backbone.Collection.extend({
         this.ships.on('add', function(model) {
             this.placeShip(model);
         }, this);
+
+        this.on('change:shot', function() {
+            this.safe -= 1;
+        }, this);
     },
 
     cellAt: function(row, col) {
@@ -87,9 +91,6 @@ module.exports = Field = Backbone.Collection.extend({
         var cell = this.cellAt(row, col);
 
         var shipId = cell.get('ship');
-
-        this.safe -= 1;
-
         var res = false;
 
         if(shipId) {
@@ -101,7 +102,7 @@ module.exports = Field = Backbone.Collection.extend({
                 _.each(idx, function(el) {
                     _.each(around, function(offset) {
                         var _cell = this.cellAt(el.r + offset.r, el.c + offset.c);
-                        if(_cell) {
+                        if(_cell && !_cell.get('ship')) {
                             _cell.set('shot', true);
                         }
                     }, this);
