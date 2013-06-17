@@ -3,6 +3,8 @@ var Backbone = require('backbone'),
     _ = require('lodash'),
     Ships = require('collection/ship');
 
+
+
 var around = [{r: -1, c: -1}, {r: -1, c: 0}, {r: -1, c: 1},{r: 0, c: -1}, {r: 0, c: 1},{r: 1, c: -1}, {r: 1, c: 0}, {r: 1, c: 1}];
 
 module.exports = Field = Backbone.Collection.extend({

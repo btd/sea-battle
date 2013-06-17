@@ -179,21 +179,28 @@ module.exports = Backbone.View.extend({
     },
 
     makeShot: function(evt) {
+        this.undelegateEvents();
+
         var $target = $(evt.currentTarget);
         var row = $target.data('row'), col = $target.data('col');
+
 
         if(this.field.canShot(row, col)) {
             var shotResult = this.field.makeShot(row, col);
             if(shotResult) {
                 if(!_.isBoolean(shotResult)) {
-                    this.drawShot(this.field.cellAt(row, col));
                     this.drawShipAt(shotResult.get('idx'), shotResult.get('dir'), this.brokenShip);
                     this.trigger('shot:final');
                 }
+                this.delegateEvents(this.eventsBattle);
             } else {
                 this.trigger('shot:out');
             }
+        } else {
+            this.delegateEvents(this.eventsBattle);
         }
+
+
     },
 
     waitTurn: function() {
