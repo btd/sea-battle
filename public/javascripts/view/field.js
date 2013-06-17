@@ -4,7 +4,7 @@ var Backbone = require('backbone'),
 
 module.exports = Backbone.View.extend({
     eventsPrepare: {
-        'hover .cell': 'selectPlaceForShip',
+        'mouseover .cell': 'selectPlaceForShip',
         'click .cell': 'placeShip'
     },
 
